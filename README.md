@@ -32,4 +32,27 @@ docker-compose up --build
 $ docker-compose down
 ```
 
+## Set up database to point at container
+
+Change the file `config/database.yml`
+
+```
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: db
+  username: postgres
+  password:
+  pool: 5
+
+development:
+  <<: *default
+  database: src_development
+
+
+test:
+  <<: *default
+  database: src_test
+```
+
 [For more info](https://docs.docker.com/compose/rails/)
